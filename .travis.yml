@@ -2,16 +2,22 @@ sudo: required
 services:
   - docker
 
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-
 before_install:
   - docker build -t get2vj/docker-angular -f Dockerfile.dev .
 
 script:
-  - export CHROME_BIN=chromium-browser
   - docker run get2vj/docker-angular npm run test -- --no-watch --no-progress --code-coverage=true --browsers=ChromeHeadlessCI
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-angular-vik"
+  env: "DockerAngularVik-env"
+  bucker_name: "elasticbeanstalk-us-east-1-vik"
+  bucket_path: "docker-angular-vik"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+
