@@ -5,6 +5,9 @@ WORKDIR '/app'
 COPY package.json .
 RUN npm install
 
+RUN apk add chromium
+ENV CHROME_BIN=/usr/bin/chromium-browser
+
 COPY . .
 EXPOSE 4200
 CMD ["npm", "run", "start"]
