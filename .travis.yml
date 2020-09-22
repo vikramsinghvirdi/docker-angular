@@ -3,11 +3,15 @@ services:
   - docker
 
 addons:
-  chrome: stable
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 
 before_install:
   - docker build -t get2vj/docker-angular -f Dockerfile.dev .
 
 script:
-  - export CHROME_BIN=/usr/bin/chromium-browser
-  - docker run get2vj/docker-angular npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
+  - export CHROME_BIN=chromium-browser
+  - docker run get2vj/docker-angular npm run test -- --watch=false
