@@ -14,4 +14,4 @@ before_install:
 
 script:
   - export CHROME_BIN=chromium-browser
-  - docker run get2vj/docker-angular npm run test -- --watch=false
+  - docker run get2vj/docker-angular npm run test -- --no-watch --no-progress --code-coverage=true --browsers=ChromeHeadlessCI
