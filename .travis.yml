@@ -1,0 +1,9 @@
+sudeo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t get2vj/docker-angular -f Dockerfile.dev .
+
+script:
+  - docker run get2vj/docker-angular npm run test -- --coverage
