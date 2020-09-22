@@ -13,7 +13,7 @@ deploy:
   region: "us-east-1"
   app: "docker-angular-vik"
   env: "DockerAngularVik-env"
-  bucker_name: "elasticbeanstalk-us-east-1-vik"
+  bucket_name: "elasticbeanstalk-us-east-1-vik"
   bucket_path: "docker-angular-vik"
   on:
     branch: master
